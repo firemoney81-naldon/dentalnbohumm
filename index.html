@@ -1,23 +1,326 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+    <!-- Schema.org LocalBusiness 마크업(JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FinancialService",
+      "name": "진단형 치아보험 비교 및 가입 가이드",
+      "url": "https://도메인/진단형치아보험",
+      "description": "2026년 진단형 치아보험에 대한 상세 정보, 가격 비교, 보장 내용, 장단점 및 가입 노하우를 제공합니다.",
+      "serviceType": "HealthInsurancePlan",
+      "provider": {
+        "@type": "Organization",
+        "name": "보험 정보 리서치 센터",
+        "url": "https://도메인/"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "KR"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://도메인/진단형치아보험"
+      }
+    }
+    </script>
+
+    <style>
+      /* --- 디자인 개선 CSS --- */
+      body { font-family: 'Noto Sans KR', sans-serif; margin:0; padding:0; background:#f0f4f8; color:#333; line-height:1.7; font-size:16px; }
+      header { background:#ffffff; padding:40px 20px; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,0.05); }
+      header h1 { font-size:2.8rem; color:#0b3d91; margin-bottom:10px; line-height:1.4; }
+      header p { font-size:1.1rem; color:#555; max-width:700px; margin:0 auto; }
+      section { max-width:900px; margin:30px auto; padding:30px; background:#ffffff; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.08); }
+      h2 { font-size:2rem; color:#0b3d91; border-bottom:3px solid #e1eaf3; padding-bottom:10px; margin-top:30px; margin-bottom:20px; font-weight:700; }
+      h3 { font-size:1.5rem; color:#2c5bb5; margin-top:25px; margin-bottom:15px; border-left:4px solid #a3c4ff; padding-left:15px; font-weight:600; }
+      p, li, dd { font-size:1rem; color:#444; }
+      ul, ol { padding-left:25px; margin-bottom:15px; }
+      li { margin-bottom:10px; }
+      a { color:#0b3d91; text-decoration:none; transition: color 0.3s; }
+      a:hover { color:#4285f4; text-decoration:underline; }
+
+      /* 테이블 스타일 개선 */
+      table { width:100%; border-collapse: separate; border-spacing:0; margin:20px 0; border:1px solid #ddd; border-radius:8px; overflow:hidden; }
+      th, td { padding:15px; text-align:center; border:none; border-bottom:1px solid #eee; }
+      th { background:#f5f8ff; color:#333; font-weight:700; font-size:1rem; border-right:1px solid #eee; }
+      td { background:#ffffff; font-size:0.95rem; }
+      th:last-child, td:last-child { border-right:none; }
+      tr:last-child td { border-bottom:none; }
+
+      /* 강조 박스 스타일 */
+      .highlight-box { background:#e1f0f4; border-left:5px solid #00a0e9; padding:20px; margin:20px 0; border-radius:8px; line-height:1.8; color:#222; }
+      .note-box { background:#fff3e0; border-left:5px solid #ff9800; padding:20px; margin:20px 0; border-radius:8px; }
+
+      /* 버튼 CTA 스타일 */
+      .btn-cta {
+        display:inline-block;
+        padding:16px 35px;
+        background:#ff6f00;
+        color:#fff;
+        font-weight:700;
+        border:none;
+        border-radius:30px;
+        box-shadow:0 6px 10px rgba(255, 111, 0, 0.3);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        cursor:pointer;
+        text-decoration:none;
+        text-align:center;
+        font-size:1.1rem;
+        margin-top:20px;
+      }
+      .btn-cta:hover {
+        background:#e65100;
+        transform:translateY(-2px);
+      }
+
+      /* 내비게이션 스타일 */
+      nav { max-width:900px; margin:20px auto; padding:15px; background:#f5f8ff; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.05); }
+      nav ul { display:flex; flex-wrap:wrap; list-style:none; padding:0; justify-content:space-around; }
+      nav li { margin:5px 10px; }
+      nav a { font-weight:600; font-size:0.95rem; color:#0b3d91; padding:5px 10px; border-radius:5px; transition: background-color 0.3s; }
+      nav a:hover { background:#e1eaf3; text-decoration:none; }
+
+      /* 폼 스타일 */
+      form label { display:block; margin-top:15px; font-weight:600; color:#333; }
+      form input[type="text"], form input[type="tel"], form select, form textarea {
+        width:100%; padding:12px; margin-top:5px; border:1px solid #ddd; border-radius:6px; box-sizing:border-box; font-size:1rem;
+      }
+      form button { width:100%; margin-top:20px; }
+
+      /* 반응형 디자인 */
+      @media(max-width:768px) {
+        header { padding:30px 15px; }
+        header h1 { font-size:2rem; }
+        section { padding:20px; margin:15px auto; }
+        h2 { font-size:1.6rem; }
+        h3 { font-size:1.3rem; }
+        nav ul { flex-direction: column; }
+        nav li { width:100%; text-align:center; margin-bottom:5px; }
+        table { font-size:0.9rem; }
+      }
+    </style>
+</head>
+
+<body>
+  <header>
+    <h1>진단형 치아보험: 2026년 가입 가이드 및 가격 비교</h1>
+    <p>치과 치료 비용 부담, 진단형 치아보험으로 해결하세요. 보장 범위, 가격 비교, 가입 조건, 내돈내산 후기까지 전문가가 분석한 핵심 정보를 제공합니다.</p>
+    <a class="btn-cta" href="#contact">전문가와 무료 상담하기</a>
+  </header>
+
+  <nav aria-label="페이지 내 이동">
+    <ul>
+      <li><a href="#intro">진단형 치아보험이란?</a></li>
+      <li><a href="#comparison">진단형 vs 무진단형</a></li>
+      <li><a href="#coverage">보장 내용 상세 분석</a></li>
+      <li><a href="#price-factors">보험료 핵심 요소</a></li>
+      <li><a href="#companies">주요 상품 비교표</a></li>
+      <li><a href="#checklist">가입 전 체크리스트</a></li>
+      <li><a href="#faq">자주 묻는 질문</a></li>
+      <li><a href="#contact">1:1 맞춤 상담</a></li>
+    </ul>
+  </nav>
+
+  <section id="intro">
+    <span id="intro-anchor" class="anchor"></span>
+    <h2>진단형 치아보험, 왜 필요한가? (2026년 현황 분석)</h2>
+    <p>치과 치료는 국민건강보험의 보장 범위가 제한적이라 환자 본인 부담금이 매우 높습니다. 특히 임플란트, 브릿지, 틀니 등 보철치료는 수백만 원에 달하는 <span style="font-weight:bold;">비용</span>이 발생하며, 이는 경제적인 부담으로 작용합니다. <span style="font-weight:bold;">진단형 치아보험</span>은 이러한 치과 치료의 고액 비용을 보장하기 위해 설계된 상품입니다. 2026년 현재, 평균 수명 연장과 식습관 변화로 인해 치아 건강 관리에 대한 관심이 증가하면서 치아보험 <span style="font-weight:bold;">가입</span>자가 꾸준히 늘고 있습니다.</p>
+    <p class="highlight-box">진단형 치아보험은 <span style="font-weight:bold; color:#d9534f;">가입 전 치아 상태 진단</span>을 통해 보장 한도와 금액이 결정되는 상품입니다. 무진단형에 비해 <span style="font-weight:bold;">보장 금액이 높고, 보철치료(임플란트, 브릿지)를 횟수 제한 없이 보장</span>하는 경우가 많아 치아 상태가 양호한 분들에게 특히 유리합니다. 따라서 <span style="font-weight:bold;">치아보험 추천</span>을 받을 때 가장 먼저 고려해야 할 유형입니다.</p>
+
+    <h3>치아보험이 필요한 이유</h3>
+    <ol>
+      <li><strong>고액의 치료 <span style="font-weight:bold;">비용</span> 부담 완화:</strong> 임플란트 1개당 <span style="font-weight:bold;">평균</span> 100~200만원, 크라운 1개당 40~60만원 수준으로 <span style="font-weight:bold;">예상</span>됩니다.</li>
+      <li><strong>국민건강보험의 한계:</strong> 건강보험은 주로 스케일링, 충치 치료(아말감, 레진), 신경치료 등 기본적인 <span style="font-weight:bold;">보존치료</span>에 한정되어 있습니다. 비급여 항목인 보철치료에 대한 보장이 절실합니다.</li>
+      <li><strong>노화로 인한 치아 손상:</strong> 나이가 들수록 치아 손상 및 잇몸 질환 발생률이 높아져 미래의 <span style="font-weight:bold;">치료 비용</span>에 대비해야 합니다.</li>
+    </ol>
+    <a href="https://www.namu.wiki/w/치아보험" target="_blank">나무위키: 치아보험의 개요 및 필요성</a>
+  </section>
+
+  <section id="comparison">
+    <span id="comparison-anchor" class="anchor"></span>
+    <h2>진단형 vs 무진단형 치아보험 <span style="font-weight:bold;">차이점</span> 비교 분석</h2>
+    <p>치아보험은 크게 진단형과 무진단형으로 나뉩니다. 두 상품은 <span style="font-weight:bold;">가입</span> 방식과 보장 범위에 명확한 <span style="font-weight:bold;">차이점</span>이 있으므로 자신의 치아 상태에 맞춰 선택하는 것이 중요합니다. <span style="font-weight:bold;">진단형 치아보험</span>은 <span style="font-weight:bold;">장점</span>이 뚜렷하지만, <span style="font-weight:bold;">단점</span>도 존재합니다.</p>
+
+    <h3>1. 진단형 치아보험의 <span style="font-weight:bold;">장단점</span></h3>
+    <p>진단형은 <span style="font-weight:bold;">가입</span> 전 치아 검사를 통해 현재 치아 상태를 확인합니다. 이 검사를 통과하면 무진단형보다 훨씬 높은 보장 한도를 받을 수 있습니다. 특히 고가의 보철치료에 대해 횟수 제한 없이 보장하는 것이 최대 <span style="font-weight:bold;">장점</span>입니다. <span style="font-weight:bold;">단점</span>은 치아 상태가 좋지 않은 경우 <span style="font-weight:bold;">가입</span>이 거절될 수 있으며, <span style="font-weight:bold;">보험료(가격)</span>가 상대적으로 높다는 점입니다.</p>
+    <ul>
+      <li><strong>가입 조건:</strong> 치과 검진 필수, 치아 상태에 따라 <span style="font-weight:bold;">가입</span> 거절 가능.</li>
+      <li><strong>보장 한도:</strong> 보철치료(임플란트, 브릿지) <span style="font-weight:bold;">보장 금액</span>이 높고, 횟수 제한이 없는 경우가 많음.</li>
+      <li><strong>적합 대상:</strong> 현재 치아 상태가 건강하며 미래의 고액 치료에 대비하고 싶은 분.</li>
+    </ul>
+
+    <h3>2. 무진단형 치아보험의 <span style="font-weight:bold;">장단점</span></h3>
+    <p>무진단형은 고지 의무(현재 치료 여부 등)만 충족하면 <span style="font-weight:bold;">가입</span>이 가능합니다. 검진 없이 <span style="font-weight:bold;">가입</span>할 수 있어 편리하지만, 보장 한도에 횟수 제한(예: 임플란트 연간 3개 한도)이 있거나 <span style="font-weight:bold;">보장 금액</span>이 진단형보다 낮은 경우가 많습니다. <span style="font-weight:bold;">가격</span>이 <span style="font-weight:bold;">저렴한곳</span>을 찾을 때 주로 고려됩니다.</p>
+    <ul>
+      <li><strong>가입 조건:</strong> 고지 의무 사항(최근 1년 이내 치과 치료 여부 등) 확인 후 <span style="font-weight:bold;">가입</span>. 검진 불필요.</li>
+      <li><strong>보장 한도:</strong> 보철치료 횟수 제한 및 <span style="font-weight:bold;">보장 금액</span> 한도가 설정되는 경우가 많음.</li>
+      <li><strong>적합 대상:</strong> 비교적 젊고 치아 상태가 양호하지만 <span style="font-weight:bold;">가입</span> 절차를 간소화하고 싶은 분.</li>
+    </ul>
+    <p class="note-box"><strong>중요:</strong> <span style="font-weight:bold;">내돈내산 후기</span>를 보면, 진단형은 보철치료가 잦을 것으로 <span style="font-weight:bold;">예상</span>되는 40~50대 이상에게, 무진단형은 가벼운 <span style="font-weight:bold;">보존치료</span> 보장을 원하는 20~30대에게 주로 <span style="font-weight:bold;">추천</span>됩니다.</p>
+  </section>
+
+  <section id="coverage">
+    <span id="coverage-anchor" class="anchor"></span>
+    <h2>진단형 치아보험의 핵심 <span style="font-weight:bold;">보장 내용</span> 상세 분석</h2>
+    <p>진단형 치아보험은 크게 보철치료와 보존치료를 보장합니다. 특히 <span style="font-weight:bold;">보철치료</span>에 대한 <span style="font-weight:bold;">보장 금액</span>과 횟수가 이 상품의 핵심입니다. <span style="font-weight:bold;">진단형 치아보험</span>을 <span style="font-weight:bold;">가입</span>할 때는 이 두 가지 <span style="font-weight:bold;">보장 내용</span>을 꼼꼼히 확인해야 합니다.</p>
+
+    <h3>1. 보철치료 (임플란트, 브릿지, 틀니) <span style="font-weight:bold;">보장</span></h3>
+    <p>보철치료는 치아를 상실했을 때 인공 치아를 심는 고난도 치료입니다. 진단형 상품은 이 부분에서 무진단형과 가장 큰 <span style="font-weight:bold;">차이점</span>을 보입니다. 대다수의 진단형 상품은 <span style="font-weight:bold;">임플란트 보장</span>을 연간 횟수 제한 없이 제공하며, <span style="font-weight:bold;">보장 금액</span>도 높게 책정되어 있습니다. <span style="font-weight:bold;">내돈내산 후기</span>에서도 이 부분의 만족도가 높습니다.</p>
+    <ul>
+      <li><strong>임플란트:</strong> 상실된 치아 부위에 인공 치아 뿌리를 심고 보철물을 씌우는 시술. <span style="font-weight:bold;">가격</span>이 가장 비싼 치료이며, 진단형 <span style="font-weight:bold;">보장</span>의 핵심.</li>
+      <li><strong>브릿지:</strong> 양쪽 치아를 깎아 다리처럼 연결하여 인공 치아를 씌우는 시술.</li>
+      <li><strong>틀니(의치):</strong> 여러 개의 치아가 상실되었을 때 탈착 가능한 보철물.</li>
+    </ul>
+
+    <h3>2. 보존치료 (충치, 신경치료, 크라운) <span style="font-weight:bold;">보장</span></h3>
+    <p>보존치료는 치아를 발치하지 않고 보존하며 진행하는 치료입니다. 충치 치료(인레이, 온레이)나 신경치료 후 씌우는 크라운 등이 포함됩니다. <span style="font-weight:bold;">진단형 치아보험</span>은 보철치료 <span style="font-weight:bold;">보장</span>이 강점이지만, 보존치료 <span style="font-weight:bold;">보장</span>도 중요합니다. 특히 크라운 치료는 <span style="font-weight:bold;">비용</span>이 만만치 않아 <span style="font-weight:bold;">보장 금액</span>을 잘 확인해야 합니다.</p>
+    <ul>
+      <li><strong>크라운:</strong> 치아의 손상이 심해 씌우는 치료. 진단형 상품에서는 <span style="font-weight:bold;">보장 금액</span>이 비교적 높습니다.</li>
+      <li><strong>충치치료(레진, 인레이/온레이):</strong> 충치 부위를 제거하고 충전재로 메우는 치료.</li>
+      <li><strong>신경치료:</strong> 치아 내부의 신경이 손상되었을 때 진행하는 치료.</li>
+    </ul>
+    <p>※ 참고: 치아보험은 <span style="font-weight:bold;">면책기간</span>과 <span style="font-weight:bold;">감액기간</span>이 존재합니다. <span style="font-weight:bold;">가입</span> 후 바로 <span style="font-weight:bold;">보장</span>이 시작되는 것이 아니므로, <span style="font-weight:bold;">가입</span> 시기를 신중하게 결정해야 합니다. (자세한 내용은 FAQ 참조)</p>
+    <a href="https://www.law.go.kr/법령/국민건강보험법" target="_blank">국가법령정보센터: 국민건강보험법</a>
+  </section>
+
+  <section id="price-factors">
+    <span id="price-factors-anchor" class="anchor"></span>
+    <h2>진단형 치아보험 <span style="font-weight:bold;">가격</span> 결정 핵심 요소 (2026년 <span style="font-weight:bold;">평균 비용</span> 분석)</h2>
+    <p>진단형 치아보험 <span style="font-weight:bold;">보험료(가격)</span>는 여러 요인에 의해 결정됩니다. <span style="font-weight:bold;">저렴한곳</span>을 찾기 위해서는 단순히 <span style="font-weight:bold;">보험료</span>만 비교할 것이 아니라, 보장 내용과 <span style="font-weight:bold;">가입</span> 조건 등을 종합적으로 고려해야 합니다. 2026년 기준, <span style="font-weight:bold;">진단형 치아보험</span>의 <span style="font-weight:bold;">예상 비용</span>을 좌우하는 핵심 요소를 정리했습니다.</p>
+
+    <h3>1. <span style="font-weight:bold;">갱신형 vs 비갱신형</span> 선택</h3>
+    <ul>
+      <li><strong><span style="font-weight:bold;">비갱신형</span> 치아보험:</strong> <span style="font-weight:bold;">가입</span> 시점에 보험료가 확정되어 만기까지 동일한 <span style="font-weight:bold;">가격</span>을 유지합니다. 초기 <span style="font-weight:bold;">보험료</span>는 갱신형보다 비싸지만, 장기적으로 보면 <span style="font-weight:bold;">총 납입 금액</span>은 더 <span style="font-weight:bold;">저렴한곳</span>이 많습니다.</li>
+      <li><strong><span style="font-weight:bold;">갱신형</span> 치아보험:</strong> 일정 주기(예: 5년, 10년)마다 <span style="font-weight:bold;">보험료</span>가 갱신됩니다. 초기 <span style="font-weight:bold;">가격</span>은 <span style="font-weight:bold;">저렴</span>하지만, 나이가 들수록 <span style="font-weight:bold;">보험료</span>가 급격히 인상될 수 있습니다.</li>
+    </ul>
+
+    <h3>2. <span style="font-weight:bold;">가입</span> 연령 및 성별</h3>
+    <p>보험은 연령이 낮을 때 <span style="font-weight:bold;">가입</span>할수록 <span style="font-weight:bold;">보험료</span>가 <span style="font-weight:bold;">저렴</span>합니다. 치아는 노화에 따라 손상될 확률이 높아지기 때문에 <span style="font-weight:bold;">가입</span> 시점의 연령이 <span style="font-weight:bold;">가격</span>에 미치는 영향이 매우 큽니다. 성별에 따른 <span style="font-weight:bold;">가격</span> <span style="font-weight:bold;">차이점</span>도 존재합니다.</p>
+
+    <h3>3. <span style="font style="font-weight:bold;">보장 금액</span> 및 한도 설정</h3>
+    <p><span style="font-weight:bold;">진단형 치아보험</span>은 <span style="font-weight:bold;">보장 금액</span>이 높을수록 <span style="font-weight:bold;">보험료</span>가 비싸집니다. <span style="font-weight:bold;">가입</span> 전 치아 상태를 바탕으로 <span style="font-weight:bold;">임플란트</span> <span style="font-weight:bold;">보장</span> 한도(예: 100만원 vs 200만원)를 어떻게 설정하느냐에 따라 <span style="font-weight:bold;">견적</span>이 크게 달라집니다.</p>
+
+    <h3>4. <span style="font-weight:bold;">평균 비용</span> <span style="font-weight:bold;">예상</span> (2026년 기준)</h3>
+    <p>2026년 기준, 40세 남성 <span style="font-weight:bold;">가입</span>을 <span style="font-weight:bold;">기준</span>으로 <span style="font-weight:bold;">비갱신형</span> 진단형 치아보험을 <span style="font-weight:bold;">가입</span>할 경우 <span style="font-weight:bold;">평균</span> <span style="font-weight:bold;">월 납입액</span>은 약 5만원~7만원 선에서 형성됩니다. (단, 이는 <span style="font-weight:bold;">보장 내용</span>과 회사별 <span style="font-weight:bold;">차이점</span>에 따라 상이함)</p>
+  </section>
+
+  <section id="companies">
+    <span id="companies-anchor" class="anchor"></span>
+    <h2>주요 보험사별 <span style="font-weight:bold;">진단형 치아보험 비교</span> <span style="font-weight:bold;">순위</span></h2>
+    <p>다양한 보험사에서 <span style="font-weight:bold;">진단형 치아보험</span> 상품을 판매하고 있습니다. <span style="font-weight:bold;">추천</span> <span style="font-weight:bold;">순위</span>를 결정할 때는 <span style="font-weight:bold;">보험료</span>뿐만 아니라 보장 내용의 세부적인 <span style="font-weight:bold;">차이점</span>을 확인해야 합니다. 아래는 주요 보험사 상품의 <span style="font-weight:bold;">비교</span> <span style="font-weight:bold;">표</span>입니다. (2026년 <span style="font-weight:bold;">예상</span> <span style="font-weight:bold;">견적</span> <span style="font-weight:bold;">기준</span>)</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>A사 (진단형 상품)</th>
+          <th>B사 (진단형 상품)</th>
+          <th>C사 (진단형 상품)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span style="font-weight:bold;">가입</span> 형태</td>
+          <td>진단형/비갱신형</td>
+          <td>진단형/갱신형</td>
+          <td>진단형/갱신형 (5년)</td>
+        </tr>
+        <tr>
+          <td><span style="font-weight:bold;">임플란트 보장</span> (1개당)</td>
+          <td>200만원 (횟수 무제한)</td>
+          <td>150만원 (연 3개 한도)</td>
+          <td>180만원 (연 3개 한도)</td>
+        </tr>
+        <tr>
+          <td><span style="font-weight:bold;">크라운 보장</span> (1개당)</td>
+          <td>40만원</td>
+          <td>30만원</td>
+          <td>35만원</td>
+        </tr>
+        <tr>
+          <td><span style="font-weight:bold;">면책기간</span></td>
+          <td>1년 (보철) / 90일 (보존)</td>
+          <td>2년 (보철) / 90일 (보존)</td>
+          <td>1년 (보철) / 90일 (보존)</td>
+        </tr>
+        <tr>
+          <td><span style="font-weight:bold;">감액기간</span></td>
+          <td><span style="font-weight:bold;">가입</span> 후 1년 50% <span style="font-weight:bold;">보장</span></td>
+          <td><span style="font-weight:bold;">가입</span> 후 2년 50% <span style="font-weight:bold;">보장</span></td>
+          <td><span style="font-weight:bold;">가입</span> 후 1년 50% <span style="font-weight:bold;">보장</span></td>
+        </tr>
+        <tr>
+          <td><span style="font-weight:bold;">예상 보험료</span> (<span style="font-weight:bold;">평균</span> 40세 남성)</td>
+          <td>월 6만원대 (비갱신형)</td>
+          <td>월 4만원대 (갱신형)</td>
+          <td>월 4.5만원대 (갱신형)</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="highlight-box"><strong>중요:</strong> <span style="font-weight:bold;">치아보험 비교</span> 시 <span style="font-weight:bold;">면책기간</span>과 <span style="font-weight:bold;">감액기간</span>을 반드시 확인해야 합니다. 보장이 시작되는 시점과 <span style="font-weight:bold;">보장 금액</span> 감액 기간이 보험사별로 <span style="font-weight:bold;">차이점</span>이 있습니다.</p>
+    <a href="https://www.fss.or.kr/fss/main/index.do" target="_blank">금융감독원: 금융상품 한눈에 비교</a>
+  </section>
+
+  <section id="checklist">
+    <span id="checklist-anchor" class="anchor"></span>
+    <h2>진단형 치아보험 <span style="font-weight:bold;">가입</span> 전 필수 <span style="font-weight:bold;">체크리스트</span></h2>
+    <p><span style="font-weight:bold;">내돈내산 후기</span>를 통해 <span style="font-weight:bold;">가입</span>자들이 중요하다고 강조하는 부분을 정리했습니다. <span style="font-weight:bold;">저렴한곳</span>을 찾더라도 다음 6가지 핵심 <span style="font-weight:bold;">체크리스트</span>를 확인하여 후회 없는 <span style="font-weight:bold;">가입</span>을 진행하세요.</p>
+    <ol>
+      <li><strong><span style="font-weight:bold;">보철치료 보장</span> 횟수 확인:</strong> 진단형의 최대 <span style="font-weight:bold;">장점</span>은 횟수 제한 없는 <span style="font-weight:bold;">보장</span>입니다. <span style="font-weight:bold;">가입</span> 전 횟수 제한 유무를 명확히 확인하세요.</li>
+      <li><strong><span style="font-weight:bold;">비갱신형 vs 갱신형</span> 선택:</strong> 장기 <span style="font-weight:bold;">가입</span>을 원한다면 <span style="font-weight:bold;">비갱신형</span>을, 단기 <span style="font-weight:bold;">가입</span>을 원한다면 갱신형을 <span style="font-weight:bold;">추천</span>합니다.</li>
+      <li><strong><span style="font-weight:bold;">면책기간</span> 및 <span style="font-weight:bold;">감액기간</span> 확인:</strong> <span style="font-weight:bold;">가입</span> 즉시 <span style="font-weight:bold;">보장</span>이 시작되지 않으므로, <span style="font-weight:bold;">가입</span> 시점과 <span style="font-weight:bold;">보장</span> 시작 시기를 염두에 두고 <span style="font-weight:bold;">가입</span>해야 합니다.</li>
+      <li><strong>보험사별 <span style="font-weight:bold;">차이점</span> 비교:</strong> <span style="font-weight:bold;">보장 금액</span>, <span style="font-weight:bold;">가입</span> 조건, <span style="font-weight:bold;">보험료</span> 등을 <span style="font-weight:bold;">비교</span>하여 자신에게 맞는 <span style="font-weight:bold;">상품</span>을 선택하세요.</li>
+      <li><strong><span style="font-weight:bold;">가입</span> 조건 및 치아 상태 진단:</strong> 진단형 상품은 치과 검진을 통과해야 합니다. 현재 치아 상태에 따라 <span style="font-weight:bold;">가입</span>이 거절될 수 있습니다.</li>
+      <li><strong><span style="font-weight:bold;">추가 특약</span> 확인:</strong> 사랑니 발치, 치아교정 등은 일반 치아보험에서 <span style="font-weight:bold;">보장</span>하지 않는 경우가 많으므로 특약 가입 여부를 확인해야 합니다.</li>
+    </ol>
+    <a class="btn-cta" href="#contact">내 치아 상태에 맞는 1:1 맞춤 <span style="font-weight:bold;">견적</span> 요청하기</a>
+  </section>
+
+  <section id="faq">
+    <span id="faq-anchor" class="anchor"></span>
+    <h2>자주 묻는 질문 (FAQ)</h2>
+    <dl>
+      <dt>Q1: <span style="font-weight:bold;">진단형 치아보험</span> <span style="font-weight:bold;">가입</span> 시 <span style="font-weight:bold;">면책기간</span>과 <span style="font-weight:bold;">감액기간</span>은 무엇인가요?</dt>
+      <dd>A: <span style="font-weight:bold;">면책기간</span>은 <span style="font-weight:bold;">가입</span> 후 <span style="font-weight:bold;">보장</span>을 받을 수 없는 기간입니다. 일반적으로 <span style="font-weight:bold;">보존치료</span>는 90일, <span style="font-weight:bold;">보철치료</span>는 1년~2년입니다. <span style="font-weight:bold;">감액기간</span>은 면책기간 이후 <span style="font-weight:bold;">보장 금액</span>의 50%만 <span style="font-weight:bold;">보장</span>되는 기간입니다. <span style="font-weight:bold;">감액기간</span>이 지난 후 100% <span style="font-weight:bold;">보장</span>이 시작됩니다.</dd>
+
+      <dt>Q2: <span style="font-weight:bold;">내돈내산 후기</span>를 보면 <span style="font-weight:bold;">치아보험 추천</span> <span style="font-weight:bold;">순위</span>가 매번 다른데, 어떤 상품이 <span style="font-weight:bold;">저렴한곳</span>인가요?</dt>
+      <dd>A: <span style="font-weight:bold;">치아보험 추천 순위</span>는 <span style="font-weight:bold;">가입</span>자의 연령, 성별, 치아 상태, <span style="font-weight:bold;">보장 금액</span> 설정 등에 따라 다릅니다. <span style="font-weight:bold;">저렴한곳</span>을 찾으려면 <span style="font-weight:bold;">보험료 비교</span>뿐만 아니라 보장 내용의 <span style="font-weight:bold;">차이점</span>도 꼼꼼하게 <span style="font-weight:bold;">비교</span>해야 합니다. 무조건 <span style="font-weight:bold;">가격</span>이 <span style="font-weight:bold;">싼곳</span>보다는 <span style="font-weight:bold;">보장</span>이 튼튼한 상품이 장기적으로 유리합니다.</dd>
+
+      <dt>Q3: <span style="font-weight:bold;">진단형 치아보험</span> <span style="font-weight:bold;">가입</span> 시 <span style="font-weight:bold;">갱신형</span>을 선택해야 하나요, <span style="font-weight:bold;">비갱신형</span>을 선택해야 하나요?</dt>
+      <dd>A: <span style="font-weight:bold;">비갱신형</span>은 장기적으로 <span style="font-weight:bold;">총 납입 금액</span>이 <span style="font-weight:bold;">저렴</span>할 가능성이 높고, 갱신형은 초기 <span style="font-weight:bold;">가격</span>이 <span style="font-weight:bold;">저렴</span>합니다. <span style="font-weight:bold;">가입</span> 목적과 나이를 고려하여 선택하세요. <span style="font-weight:bold;">갱신형</span>은 나이가 많아질수록 <span style="font-weight:bold;">보험료</span> 인상폭이 커질 수 있습니다.</dd>
+    </dl>
+    <a href="https://www.data.go.kr/data/15000969/fileData.do" target="_blank">보건복지부: 국민건강영양조사 치과 질환 유병률 현황</a>
+  </section>
+
+  <section id="contact">
+    <span id="contact-anchor" class="anchor"></span>
+    <h2>1:1 맞춤 <span style="font-weight:bold;">견적</span> 상담 문의 (무료)</h2>
+    <p>치아 상태와 <span style="font-weight:bold;">가입</span> 조건에 따라 <span style="font-weight:bold;">진단형 치아보험</span>의 <span style="font-weight:bold;">가격</span>과 <span style="font-weight:bold;">보장 내용</span>은 천차만별입니다. 전문가와 상담하여 나에게 가장 적합한 <span style="font-weight:bold;">상품</span>을 찾고, <span style="font-weight:bold;">저렴한곳</span>을 <span style="font-weight:bold;">비교</span>해보세요.</p>
+    <form action="/submit" method="POST" style="max-width:600px; margin:auto;">
+      <label for="name">이름<span style="color:red;">*</span></label>
+      <input type="text" id="name" name="name" required placeholder="예: 홍길동" />
+
+      <label for="phone">연락처<span style="color:red;">*</span></label>
+      <input type="tel" id="phone" name="phone" required placeholder="010-1234-5678" pattern="[0-9\-]+" />
+
+      <label for="age">나이<span style="color:red;">*</span></label>
+      <input type="number" id="age" name="age" required min="20" max="60" placeholder="만 나이" />
+
+      <label for="move-type">치아보험 <span style="font-weight:bold;">가입</span> <span style="font-weight:bold;">희망</span> 유형<span style="color:red;">*</span></label>
+      <select id="move-type" name="move_type" required>
+        <option value="">선택하세요</option>
+        <option value="진단형 치아보험">진단형 치아보험</option>
+        <option value="무진단형 치아보험">무진단형 치아보험</option>
+        <option value="상담 후 결정">상담 후 결정</option>
+      </select>
+
+      <label for="message">추가 문의 사항 (현재 치아 상태, <span style="font-weight:bold;">보장 금액</span> <span style="font-weight:bold;">희망</span> 등)</label>
+      <textarea id="message" name="message" rows="4" placeholder="예: 최근 충치 치료 경험 있음, 임플란트 보장 많이 받고 싶음"></textarea>
+
+      <button type="submit" class="btn-cta">무료 <span style="font-weight:bold;">견적</span> 요청하기</button>
+    </form>
+  </section>
+
+
+  
